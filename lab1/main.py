@@ -11,16 +11,18 @@ class StringTreeNode:
         self.children = []
 
     def generation_step(self, grammar, max_len):
+        print(f"\n\nMy string = '{self.string}'")
         if len(self.string) < max_len:
             for char in self.string:
                 variants = grammar.get(char)
                 if variants is not None:
                     for var in variants:
                         new_str = self.string.replace(char, var, 1)
+                        print(f"Generated {new_str} for child")
                         node = StringTreeNode(new_str)
                         self.children.append(node)
-                for child in self.children:
-                    child.generation_step(grammar, max_len)
+                    for child in self.children:
+                        child.generation_step(grammar, max_len)
 
     def parse_node(self):
         strings = []
