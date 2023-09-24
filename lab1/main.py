@@ -62,6 +62,7 @@ class MainWindow(QMainWindow):
         self.grammar_window = None
         self.string_len = 0
         self.grammar = {
+            'Start': 'S',
             'S': ['aA', 'bS'],
             'A': ['aA', 'a']
         }
