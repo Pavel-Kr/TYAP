@@ -11,18 +11,17 @@ class StringTreeNode:
         self.children = []
 
     def generation_step(self, grammar, max_len):
-        print(f"\n\nMy string = '{self.string}'")
         if len(self.string) < max_len:
             for char in self.string:
                 variants = grammar.get(char)
                 if variants is not None:
                     for var in variants:
                         new_str = self.string.replace(char, var, 1)
-                        print(f"Generated {new_str} for child")
                         node = StringTreeNode(new_str)
                         self.children.append(node)
                     for child in self.children:
                         child.generation_step(grammar, max_len)
+                    break
 
     def parse_node(self):
         strings = []
@@ -91,7 +90,7 @@ class MainWindow(QMainWindow):
 
     def on_gen_button_clicked(self):
         self.strings_list.clear()
-        strings = self.generator.generate_strings('S', self.string_len)
+        strings = self.generator.generate_strings(self.generator.grammar.get('Start'), self.string_len)
         for string in strings:
             self.strings_list.addItem(string)
 
@@ -118,6 +117,12 @@ class GrammarWindow(QWidget):
         add_rule_button.clicked.connect(self.on_add_rule_button_clicked)
         save_grammar_button = QPushButton("Save grammar")
         save_grammar_button.clicked.connect(self.parse_layout)
+        self.start_symbol_edit = QLineEdit()
+        h_layout = QHBoxLayout()
+        h_layout.addWidget(QLabel("Start symbol: "))
+        h_layout.addWidget(self.start_symbol_edit)
+        v_layout.addLayout(h_layout)
+        v_layout.addWidget(QLabel("Grammar:"))
         v_layout.addLayout(self.rules_layout)
         v_layout.addWidget(add_rule_button)
         v_layout.addWidget(save_grammar_button)
@@ -137,6 +142,8 @@ class GrammarWindow(QWidget):
         layout.addLayout(h_layout)
 
     def parse_layout(self):
+        start_sym = self.start_symbol_edit.text()
+        self.grammar_parser.maybe_add_start_symbol(start_sym)
         for i in range(self.rules_layout.count()):
             rule_layout = self.rules_layout.itemAt(i)
             rule_name = rule_layout.itemAt(0).widget().text()
@@ -153,6 +160,16 @@ class GrammarParser:
         self.terminal = []
         self.non_terminal = []
         self.grammar = {}
+
+    def maybe_add_start_symbol(self, start):
+        if len(start) != 1:
+            print("Error: Start symbol must be 1 terminal (uppercase) symbol")
+            return
+        elif not str.isupper(start[0]):
+            print("Error: Start symbol must be 1 terminal (uppercase) symbol")
+            return
+        self.grammar['Start'] = start
+
 
     def parse_and_maybe_add_rule(self, name, desc):
         if len(name) != 1:
@@ -179,6 +196,14 @@ class GrammarParser:
         self.grammar[rule_name] = transitions
 
     def get_grammar(self):
+        if self.grammar.get('Start') is None:
+            print("Error: Start symbol is missing")
+            self.grammar.clear()
+            return None
+        elif self.grammar.get('Start') not in self.non_terminal:
+            print("Error: missing rule for start symbol")
+            self.grammar.clear()
+            return None
         for sym in self.non_terminal:
             if self.grammar.get(sym) is None:
                 print(f"Error: {sym} rule doesn't have a description")
