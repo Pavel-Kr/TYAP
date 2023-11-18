@@ -1,0 +1,10 @@
+{q0, q1, q2}; {a, b, c}; {Z, a, b, c}; q0; Z; {q2}
+
+(q0, a, Z) = (q0, aaZ)
+(q0, a, a) = (q0, aaa)
+(q0, b, a) = (q1, a)
+(q0, c, a) = (q2, E)
+(q1, b, a) = (q1, a)
+(q1, c, a) = (q2, E)
+(q2, c, a) = (q2, E)
+(q2, E, Z) = (q2, E)
