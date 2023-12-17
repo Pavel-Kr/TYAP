@@ -20,7 +20,7 @@
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Фиксированная подцепочка: </string>
+         <string> Фиксированная подцепочка: </string>
         </property>
        </widget>
       </item>
@@ -29,12 +29,30 @@
       </item>
      </layout>
     </item>
+    <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string> Алфавит:                             </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="alphabetEdit"/>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
     <item row="1" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Кратность длины: </string>
+         <string> Кратность длины: </string>
         </property>
        </widget>
       </item>
@@ -47,30 +65,19 @@
       </item>
      </layout>
     </item>
-    <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <item>
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Алфавит:                             </string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="alphabetEdit"/>
-        </item>
-       </layout>
-      </item>
-     </layout>
+    <item row="10" column="0">
+     <widget class="QPushButton" name="genStringsButton">
+      <property name="text">
+       <string>Сгенерировать цепочки по РВ</string>
+      </property>
+     </widget>
     </item>
     <item row="3" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
        <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>Сгенерированное РВ:            </string>
+         <string> Сгенерированное РВ:            </string>
         </property>
        </widget>
       </item>
@@ -90,26 +97,12 @@
       </property>
      </widget>
     </item>
-    <item row="9" column="0">
-     <widget class="QPushButton" name="genStringsButton">
-      <property name="text">
-       <string>Сгенерировать цепочки по РВ</string>
-      </property>
-     </widget>
-    </item>
-    <item row="7" column="0">
-     <widget class="QPlainTextEdit" name="genStringsEdit">
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
     <item row="4" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <widget class="QLabel" name="label_5">
         <property name="text">
-         <string>Минимальная длина цепочки:</string>
+         <string> Минимальная длина цепочки:</string>
         </property>
        </widget>
       </item>
@@ -122,12 +115,19 @@
       </item>
      </layout>
     </item>
+    <item row="7" column="0">
+     <widget class="QPlainTextEdit" name="genStringsEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
     <item row="5" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout_6">
       <item>
        <widget class="QLabel" name="label_6">
         <property name="text">
-         <string>Максимальная длина цепочки:</string>
+         <string> Максимальная длина цепочки:</string>
         </property>
        </widget>
       </item>
@@ -143,7 +143,14 @@
     <item row="6" column="0">
      <widget class="QLabel" name="label_7">
       <property name="text">
-       <string>Сгенерированные цепочки:</string>
+       <string> Сгенерированные цепочки:</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="0">
+     <widget class="QPushButton" name="setRegexButton">
+      <property name="text">
+       <string>Ввести РВ самостоятельно</string>
       </property>
      </widget>
     </item>
@@ -158,8 +165,59 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>О программе</string>
+    </property>
+    <addaction name="authorAction"/>
+    <addaction name="themeAction"/>
+   </widget>
+   <widget class="QMenu" name="menu_2">
+    <property name="title">
+     <string>Данные</string>
+    </property>
+    <addaction name="fileWriteAction"/>
+    <addaction name="fileReadAction"/>
+   </widget>
+   <widget class="QMenu" name="menu_3">
+    <property name="title">
+     <string>Справка</string>
+    </property>
+    <addaction name="helpAction"/>
+   </widget>
+   <addaction name="menu_2"/>
+   <addaction name="menu"/>
+   <addaction name="menu_3"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="authorAction">
+   <property name="text">
+    <string>Автор</string>
+   </property>
+  </action>
+  <action name="themeAction">
+   <property name="text">
+    <string>Тема</string>
+   </property>
+  </action>
+  <action name="fileWriteAction">
+   <property name="text">
+    <string>Запись в файл</string>
+   </property>
+  </action>
+  <action name="fileReadAction">
+   <property name="text">
+    <string>Открыть файл</string>
+   </property>
+  </action>
+  <action name="helpAction">
+   <property name="text">
+    <string>Справка</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

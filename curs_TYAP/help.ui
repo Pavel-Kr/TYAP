@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>639</width>
+    <height>464</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Справка</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="font">
+      <font>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab">
+      <attribute name="title">
+       <string>Клавиатура</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QPlainTextEdit" name="plainTextEdit">
+         <property name="font">
+          <font>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>При вводе данных с клавиатуры необходимо помнить следующее:
+- Алфавит состоит из одиночных символов, разделенных запятыми, например: a, b, c;
+- Минимальная длина цепочки должна быть не меньше, чем длина фиксированной подцепочки;
+- Максимальная длина цепочки должна быть больше или равна минимальной;
+- Перед генерацией цепочек нужно ввести или сгенерировать регулярное выражение;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_2">
+      <attribute name="title">
+       <string>Файл</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <widget class="QPlainTextEdit" name="plainTextEdit_2">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="plainText">
+          <string>Формат данных при вводе из файла похож на формат ini, и информация записывается в следующем виде:
+keyword = value
+где keyword - ключевое слово, список которых представлен ниже, value - значение параметра.
+
+Список параметров:
+- alphabet - алфавит, сщстоящий из одиночных символов, разделенных запятыми, например: a, b, c;
+- multiplier - кратность длины цепочки, целое число;
+- substring - фиксированная подцепочка, которая будет присутствовать во всех генерируемых цепочках;
+- minLength - минимальная длина цепочки, целое число;
+- maxLength - максимальная длина цепочки, целое число.</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

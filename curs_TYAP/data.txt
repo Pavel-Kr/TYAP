@@ -1,0 +1,5 @@
+alphabet = a, b, c
+multiplier = 3
+substring = ab
+minLength = 3
+maxLength = 6
